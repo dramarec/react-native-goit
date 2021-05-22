@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/store'
+
 import { StyleSheet, Text, View, ViewStyle, FlatList } from 'react-native';
 import Header from './components/Header/Header';
 import todos from './data.json';
 import { ITodo } from './interfaces';
 import TodoItem from './components/TodoItem/TodoItem';
 import AddTodo from './components/AddTodo/AddTod';
+
 
 export default function App() {
 
@@ -23,19 +27,24 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <Header />
-            <View style={styles.content}>
-                <AddTodo addHandler={addHandler} />
-                <View style={styles.list}>
-                    <FlatList
-                        data={state}
-                        renderItem={({ item }) => <TodoItem item={item} deleteItem={deleteItem} />}
-                    />
-                </View>
-            </View>
+        <Provider store={store}>
 
-        </View>
+            <View style={styles.container}>
+                <Header />
+                <View style={styles.content}>
+                    <AddTodo addHandler={addHandler} />
+                    <View style={styles.list}>
+                        <FlatList
+                            data={state}
+                            renderItem={({ item }) => (
+                                <TodoItem item={item} deleteItem={deleteItem} />
+                            )}
+                        />
+                    </View>
+                </View>
+
+            </View>
+        </Provider>
     );
 }
 
