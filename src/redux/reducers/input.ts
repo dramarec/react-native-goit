@@ -1,4 +1,6 @@
-import { InputActionType, INPUT_CHANGE, INPUT_CLEAR } from "../actionInterface/inputActionInterface";
+import {
+    InputActionType, INPUT_CHANGE, INPUT_CLEAR
+} from "../actionInterface/inputActionInterface";
 
 const initialState: string = '';
 
@@ -6,9 +8,11 @@ export default (state = initialState, action: InputActionType) => {
     switch (action.type) {
         case INPUT_CHANGE:
             return action.payload
+
         case INPUT_CLEAR:
             return initialState
+
         default:
-            return initialState
+            return state
     }
 }

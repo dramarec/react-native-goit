@@ -5,7 +5,7 @@ import { ITodo } from '../../interfaces';
 
 interface IProps {
     item: ITodo
-    deleteItem: (id: number) => void
+    deleteItem: (id: string) => void
 }
 
 export default function TodoItem({ item, deleteItem }: IProps) {
